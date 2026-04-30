@@ -2,6 +2,11 @@
 
 A full-stack collaborative task manager with authentication, project teams, role-based access, task assignment, status tracking, and dashboard metrics.
 
+## Live Links
+
+- Live app: https://team-task-manager.up.railway.app
+- GitHub repo: https://github.com/tushargr0ver/team-task-manager
+
 ## Features
 
 - Signup and login with JWT authentication
@@ -76,6 +81,54 @@ The Express server serves the compiled frontend from `dist/` and exposes REST AP
    ```
 
 6. Open the generated Railway domain and create the first account.
+
+## Demo Flow
+
+Use this flow to verify the application manually:
+
+1. Signup as an admin user:
+
+   ```text
+   Name: Admin User
+   Email: admin@test.com
+   Password: password123
+   ```
+
+2. Create a project:
+
+   ```text
+   Project name: Website Launch
+   Description: Launch planning and delivery tasks
+   ```
+
+3. Logout and signup as a member user:
+
+   ```text
+   Name: Member User
+   Email: member@test.com
+   Password: password123
+   ```
+
+4. Login again as the admin user.
+5. Open the project and add `member@test.com` as a project member.
+6. Create a task:
+
+   ```text
+   Title: Finalize homepage
+   Description: Review responsive layout and update final homepage copy
+   Due date: Tomorrow's date
+   Priority: High
+   Assigned to: Member User
+   ```
+
+7. Login as the member user and update the task status from `To Do` to `In Progress`, then `Done`.
+8. Login again as admin and confirm the dashboard metrics update.
+
+## Role-Based Access
+
+Admin users can manage project members, create tasks, assign tasks, delete tasks, and update all project tasks.
+
+Member users can view assigned projects and update the status of tasks assigned to them.
 
 ## API Overview
 
