@@ -237,8 +237,10 @@ input:focus, textarea:focus, select:focus {
 }
 
 .dashboard-strip {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(130px, 1fr)) minmax(220px, 1.4fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 0.8rem;
   margin-bottom: 1.2rem;
 }
@@ -248,9 +250,14 @@ input:focus, textarea:focus, select:focus {
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 0.45rem 0.7rem;
+  min-width: 0;
   min-height: 94px;
   padding: 0.9rem;
   box-shadow: none;
+}
+
+.metric.wide {
+  grid-column: span 2;
 }
 
 .metric span {
@@ -328,18 +335,20 @@ input:focus, textarea:focus, select:focus {
 
 .split-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
   gap: 1rem;
   align-items: start;
 }
 
 .task-board {
   display: grid;
-  grid-template-columns: repeat(3, minmax(210px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
+  min-width: 0;
 }
 
 .column {
+  min-width: 0;
   min-height: 470px;
   padding: 0.8rem;
   box-shadow: none;
@@ -418,6 +427,7 @@ input:focus, textarea:focus, select:focus {
 .control-rail {
   display: grid;
   gap: 0.8rem;
+  min-width: 0;
 }
 
 .panel {
@@ -501,13 +511,15 @@ input:focus, textarea:focus, select:focus {
   100% { opacity: 0; transform: translateY(12px); }
 }
 
-@media (max-width: 1120px) {
-  .dashboard-strip, .split-layout, .task-board {
+@media (max-width: 1280px) {
+  .split-layout {
     grid-template-columns: 1fr;
   }
+}
 
-  .control-rail {
-    grid-row: 1;
+@media (max-width: 980px) {
+  .task-board {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -523,10 +535,6 @@ input:focus, textarea:focus, select:focus {
   .sidebar {
     position: static;
     height: auto;
-  }
-
-  .dashboard-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .metric.wide {
