@@ -140,30 +140,27 @@ function App() {
 
   async function createProject(event) {
     event.preventDefault();
-    const formElement = event.currentTarget;
-    const form = new FormData(formElement);
+    const form = new FormData(event.currentTarget);
     const data = await api.request("/projects", {
       method: "POST",
       body: JSON.stringify({ name: form.get("name"), description: form.get("description") }),
     });
-    formElement.reset();
+    event.currentTarget.reset();
     await loadAll(data.project.id);
   }
 
   async function addMember(event) {
     event.preventDefault();
-    const formElement = event.currentTarget;
-    const email = new FormData(formElement).get("email");
+    const email = new FormData(event.currentTarget).get("email");
     await api.request(`/projects/${activeId}/members`, { method: "POST", body: JSON.stringify({ email }) });
-    formElement.reset();
+    event.currentTarget.reset();
     await loadProject(activeId);
     setToast("Member added");
   }
 
   async function createTask(event) {
     event.preventDefault();
-    const formElement = event.currentTarget;
-    const form = new FormData(formElement);
+    const form = new FormData(event.currentTarget);
     const assignedTo = Number(form.get("assignedTo"));
     await api.request(`/projects/${activeId}/tasks`, {
       method: "POST",
@@ -175,7 +172,7 @@ function App() {
         assignedTo: assignedTo || null,
       }),
     });
-    formElement.reset();
+    event.currentTarget.reset();
     await Promise.all([loadProject(activeId), loadAll(activeId)]);
   }
 
